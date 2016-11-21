@@ -6,6 +6,10 @@ import todos from './../../reducers/todos.js'
 
 class TodoList extends Component {
 
+    constructor () {
+        super();
+        this.id = 0;
+    }
     componentDidMount () {
         const { store } = this.context
         this.unsubscribe = store.subscribe(() => {
@@ -18,16 +22,17 @@ class TodoList extends Component {
     }
 
     render () {
+        this.id++
+
         const { store } = this.context
-        console.log('**************************')
-        console.log(this.context)
-        console.log(store.getState())
 
         var tasks =
             _.map(store.getState().todos, (t) => <li key={t.id} className="task">{t.text}</li>)
         return <div>
-            <input />
-            <button onClick={()=> {store.dispatch({id:0, type: 'ADD_TODO', text: 'task1'})}}>Add</button>
+            <input ref={node =>{this.input = node}} />
+            <button onClick={()=> {
+            store.dispatch({id: this.id++, type: 'ADD_TODO', text: this.input.value});
+            this.input.value = ''}}>Add</button>
             <ul>
                 {tasks}
             </ul>
