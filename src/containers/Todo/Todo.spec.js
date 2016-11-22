@@ -27,7 +27,7 @@ class TodoDriver {
       this.component = mount(
           <Provider store={store}>
             <I18nextProvider i18n={i18next.init(i18nData)}>
-              <TodoList tasks={[{id:0, text: 'text1'}, {id:1, text: 'text2'}]}/>
+              <TodoList />
             </I18nextProvider>
           </Provider>
       );
@@ -52,7 +52,7 @@ describe('todo component', () => {
 
   beforeEach(() => {
     driver = new TodoDriver();
-    driver.when.created([{id: 0, text: 'text1'}, {id: 1, text: 'text2'}])
+    driver.when.created()
   });
 
   afterEach(() => cleanup());

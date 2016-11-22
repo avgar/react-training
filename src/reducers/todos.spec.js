@@ -62,6 +62,13 @@ describe('todos list', () => {
             expect(todos(bforState, action)).to.eql(afterState);
         });
 
+    it('filter, should be \'SHOW_COMPLETED\', after dispatch ... action', () => {
+
+        expect(visibilityFilter(undefined, {type: 'SET_VISIBILITY_FILTER', filter: 'SHOW_COMPLETED'})).to.eq('SHOW_COMPLETED')
+    } )
+
+
+
 
     }
 )
